@@ -46,4 +46,12 @@ public class Post {
     public void setContentPath(String contentPath) {
         this.contentPath = contentPath;
     }
+
+    public List<ApplicationUser> getSharedByUsers() {
+        return sharedByUsers;
+    }
+
+    public void setSharedByUsers(List<ApplicationUser> sharedByUsers) {
+        this.sharedByUsers = sharedByUsers;
+    }
 }
