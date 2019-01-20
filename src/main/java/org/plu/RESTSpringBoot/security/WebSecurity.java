@@ -16,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+import static org.plu.RESTSpringBoot.security.SecurityConstants.POST_URL;
 import static org.plu.RESTSpringBoot.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -34,6 +35,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(SIGN_UP_URL).permitAll() //kazemo cemu svaki korisnik moze pristupiti
+                .antMatchers(POST_URL).permitAll()
                 // .antMatchers("/admin/**").hasRole("ADMIN") //ovo bi znacilo da moze pristupiti samo korisnik koji ima rolu ADMIN
                 .anyRequest().authenticated() //na sve druge rute koji nisu navedene dovoljno je da korisnik bude autentifikovan
                 .and()
