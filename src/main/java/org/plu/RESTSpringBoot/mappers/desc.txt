@@ -1,0 +1,5 @@
+U ovom folderu ce biti smestene sve Mapper klase.
+Odgovornost Mapper klase je da mapira DTO objekat u Entity objekat i obrnuto.
+Sve Mapper klase implementiraju MapperIntf interface.
+Sablon imenovanja:  DtoNameMappedToEntityName
+Primer:             UserRequestDtoMappedToApplicationUser
