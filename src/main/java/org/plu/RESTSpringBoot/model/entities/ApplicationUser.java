@@ -1,6 +1,7 @@
 package org.plu.RESTSpringBoot.model.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -41,6 +42,13 @@ public class ApplicationUser {
 
     @ManyToMany(mappedBy = "following")
     private List<ApplicationUser> followedBy;
+
+    public ApplicationUser() {
+        userPosts = new ArrayList<>();
+        sharedPosts = new ArrayList<>();
+        following = new ArrayList<>();
+        followedBy = new ArrayList<>();
+    }
 
     public long getId() {
         return id;
