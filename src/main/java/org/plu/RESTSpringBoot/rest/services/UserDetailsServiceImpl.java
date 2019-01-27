@@ -129,4 +129,30 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         System.out.println(username);
         return true;
     }
+
+    public int getFollowerNr(String username) {
+        if(username == null) {
+            return -1;
+        }
+
+        ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+        if(applicationUser == null) {
+            return -1;
+        }
+
+        return applicationUser.getFollowedBy().size();
+    }
+
+    public int getFollowingNr(String username) {
+        if(username == null) {
+            return -1;
+        }
+
+        ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+        if(applicationUser == null) {
+            return -1;
+        }
+
+        return applicationUser.getFollowing().size();
+    }
 }
