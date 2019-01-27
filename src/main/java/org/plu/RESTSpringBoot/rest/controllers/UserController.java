@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.websocket.server.PathParam;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -83,5 +84,17 @@ public class UserController {
                                          @RequestParam("username") String username)
             throws IOException {
         return userDetailsService.uploadPhoto(file, username);
+    }
+
+    @GetMapping("/followers/{username}")
+    public int getFollowersNr(@PathVariable("username") String username) {
+        System.out.println(username);
+        return userDetailsService.getFollowerNr(username);
+    }
+
+    @GetMapping("/following/{username}")
+    public int getFollowingNr(@PathVariable("username") String username) {
+        System.out.println(username);
+        return userDetailsService.getFollowingNr(username);
     }
 }

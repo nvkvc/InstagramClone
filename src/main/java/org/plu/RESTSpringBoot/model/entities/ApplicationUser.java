@@ -35,6 +35,16 @@ public class ApplicationUser {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
+    @JoinTable(name = "posts_liked_by_users",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "post_id")
+    )
+    private List<Post> likedPosts;
+
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(name = "follower_following", joinColumns = {
             @JoinColumn(name = "follower_id", referencedColumnName = "user_id", nullable = false)}, inverseJoinColumns = {
             @JoinColumn(name = "following_id", referencedColumnName = "user_id", nullable = false)})
@@ -48,6 +58,7 @@ public class ApplicationUser {
         sharedPosts = new ArrayList<>();
         following = new ArrayList<>();
         followedBy = new ArrayList<>();
+        likedPosts = new ArrayList<>();
     }
 
     public long getId() {
@@ -120,5 +131,13 @@ public class ApplicationUser {
 
     public void setFollowedBy(List<ApplicationUser> followedBy) {
         this.followedBy = followedBy;
+    }
+
+    public List<Post> getLikedPosts() {
+        return likedPosts;
+    }
+
+    public void setLikedPosts(List<Post> likedPosts) {
+        this.likedPosts = likedPosts;
     }
 }
